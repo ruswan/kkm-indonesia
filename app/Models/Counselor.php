@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Counselor
@@ -36,6 +37,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Counselor extends Model
 {
+    use SoftDeletes;
+
     /**
      * The table associated with the model.
      *
