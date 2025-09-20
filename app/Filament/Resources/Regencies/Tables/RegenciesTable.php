@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\Regencies\Tables;
 
+use Dom\Text;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class RegenciesTable
@@ -17,23 +19,26 @@ class RegenciesTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('province.name')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('name')
                     ->searchable(),
-            ])
-            ->filters([
-                //
+                TextColumn::make('counselors_count')
+                    ->counts('counselors')
+                    ->sortable()
+                    ->alignCenter()
+                    ->label('Counselors Count'),
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->filters([
+                SelectFilter::make('province_id')
+                    ->relationship('province', 'name')
+                    ->label('Province')
+                    ->preload()
+                    ->searchable(),
             ]);
     }
 }

@@ -17,21 +17,25 @@ class ProvincesTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('regencies_count')
+                    ->counts('regencies')
+                    ->sortable()
+                    ->alignCenter()
+                    ->label('Regencies Count'),
+                TextColumn::make('counselors_count')
+                    ->counts('counselors')
+                    ->sortable()
+                    ->alignCenter()
+                    ->label('Counselors Count'),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 }

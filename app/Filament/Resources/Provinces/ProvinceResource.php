@@ -20,9 +20,14 @@ class ProvinceResource extends Resource
 {
     protected static ?string $model = Province::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Map;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Area');
+    }
 
     public static function form(Schema $schema): Schema
     {

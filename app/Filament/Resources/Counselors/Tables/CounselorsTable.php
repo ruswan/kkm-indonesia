@@ -22,23 +22,12 @@ class CounselorsTable
                     ->searchable(),
                 TextColumn::make('registration_number')
                     ->searchable(),
-                TextColumn::make('degree')
-                    ->searchable(),
-                TextColumn::make('province')
-                    ->searchable(),
-                TextColumn::make('city')
-                    ->searchable(),
+                TextColumn::make('degree'),
+                TextColumn::make('province.name'),
+                TextColumn::make('regency.name'),
                 TextColumn::make('whatsapp_number')
                     ->searchable(),
                 TextColumn::make('contact_email')
-                    ->searchable(),
-                TextColumn::make('profile_photo')
-                    ->searchable(),
-                TextColumn::make('instagram_link')
-                    ->searchable(),
-                TextColumn::make('tiktok_link')
-                    ->searchable(),
-                TextColumn::make('facebook_link')
                     ->searchable(),
                 TextColumn::make('validation_status')
                     ->searchable(),

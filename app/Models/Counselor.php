@@ -55,8 +55,8 @@ class Counselor extends Model
         'user_id',
         'registration_number',
         'degree',
-        'province',
-        'city',
+        'province_id',
+        'regency_id',
         'whatsapp_number',
         'contact_email',
         'profile_photo',
@@ -82,6 +82,26 @@ class Counselor extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the province that owns the Counselor
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    /**
+     * Get the regency that owns the Counselor
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function regency(): BelongsTo
+    {
+        return $this->belongsTo(Regency::class);
     }
 
     /**
@@ -148,7 +168,7 @@ class Counselor extends Model
      */
     public function getFullLocationAttribute()
     {
-        return $this->city.', '.$this->province;
+        return $this->city . ', ' . $this->province;
     }
 
     /**

@@ -20,9 +20,14 @@ class RegencyResource extends Resource
 {
     protected static ?string $model = Regency::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::MapPin;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Area');
+    }
 
     public static function form(Schema $schema): Schema
     {
