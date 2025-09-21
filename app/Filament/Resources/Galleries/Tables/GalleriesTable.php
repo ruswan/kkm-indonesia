@@ -20,10 +20,6 @@ class GalleriesTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('file_path')
-                    ->searchable(),
-                TextColumn::make('type')
-                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

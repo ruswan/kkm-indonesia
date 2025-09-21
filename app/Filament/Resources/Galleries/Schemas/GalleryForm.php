@@ -2,8 +2,9 @@
 
 namespace App\Filament\Resources\Galleries\Schemas;
 
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class GalleryForm
@@ -12,14 +13,15 @@ class GalleryForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                Textarea::make('description')
-                    ->columnSpanFull(),
-                TextInput::make('file_path')
-                    ->required(),
-                TextInput::make('type')
-                    ->required(),
+                Section::make()
+                    ->columns(1)
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('title')
+                            ->required(),
+                        RichEditor::make('description')
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }
