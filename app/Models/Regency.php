@@ -73,6 +73,6 @@ class Regency extends Model
      */
     public function counselors(): HasMany
     {
-        return $this->hasMany(Counselor::class, 'city', 'name');
+        return $this->hasMany(Counselor::class);
     }
 }

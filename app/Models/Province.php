@@ -61,6 +61,6 @@ class Province extends Model
      */
     public function counselors(): HasMany
     {
-        return $this->hasMany(Counselor::class, 'province', 'name');
+        return $this->hasMany(Counselor::class);
     }
 }
