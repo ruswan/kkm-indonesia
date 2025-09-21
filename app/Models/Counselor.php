@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $user_id Foreign key to users table
  * @property string $registration_number KKMI registration number
  * @property string $degree Professional degree
- * @property string $province Province domicile
- * @property string $city City domicile
+ * @property int $province_id Foreign key to provinces table
+ * @property int $regency_id Foreign key to regencies table
+ * @property int|null $status_id Foreign key to counselor_statuses table
  * @property string $whatsapp_number WhatsApp contact number
  * @property string $contact_email Alternate email address
  * @property string|null $profile_photo Profile image path
@@ -27,7 +28,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $validation_status Member validation status (pending, approved, rejected)
  * @property \Carbon\Carbon $created_at Creation timestamp
  * @property \Carbon\Carbon $updated_at Last update timestamp
+ * @property \Carbon\Carbon|null $deleted_at Soft delete timestamp
  * @property-read \App\Models\User $user User relationship
+ * @property-read \App\Models\Province $province Province relationship
+ * @property-read \App\Models\Regency $regency Regency relationship
+ * @property-read \App\Models\CounselorStatus|null $status Status relationship
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Counselor approved()
  * @method static \Illuminate\Database\Eloquent\Builder|Counselor pending()
@@ -57,13 +62,13 @@ class Counselor extends Model
         'degree',
         'province_id',
         'regency_id',
+        'status_id',
         'whatsapp_number',
         'contact_email',
         'profile_photo',
         'instagram_link',
         'tiktok_link',
         'facebook_link',
-        'validation_status',
     ];
 
     /**
@@ -86,8 +91,6 @@ class Counselor extends Model
 
     /**
      * Get the province that owns the Counselor
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function province(): BelongsTo
     {
@@ -96,8 +99,6 @@ class Counselor extends Model
 
     /**
      * Get the regency that owns the Counselor
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function regency(): BelongsTo
     {
@@ -105,36 +106,11 @@ class Counselor extends Model
     }
 
     /**
-     * Scope a query to only include approved counselors.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Get the status that owns the Counselor
      */
-    public function scopeApproved($query)
+    public function status(): BelongsTo
     {
-        return $query->where('validation_status', 'approved');
-    }
-
-    /**
-     * Scope a query to only include pending counselors.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopePending($query)
-    {
-        return $query->where('validation_status', 'pending');
-    }
-
-    /**
-     * Scope a query to only include rejected counselors.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeRejected($query)
-    {
-        return $query->where('validation_status', 'rejected');
+        return $this->belongsTo(CounselorStatus::class, 'status_id');
     }
 
     /**
@@ -168,7 +144,7 @@ class Counselor extends Model
      */
     public function getFullLocationAttribute()
     {
-        return $this->city . ', ' . $this->province;
+        return $this->city.', '.$this->province;
     }
 
     /**
