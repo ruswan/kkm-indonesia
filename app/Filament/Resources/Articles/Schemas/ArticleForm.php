@@ -2,16 +2,14 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
-use Illuminate\Support\Str;
-use Filament\Schemas\Schema;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class ArticleForm
 {
@@ -25,14 +23,14 @@ class ArticleForm
                             ->label(__('Thumbnail'))
                             ->required()
                             ->image()
-                            ->directory('articles/thumbnails/' . date('Y/m'))
+                            ->directory('articles/thumbnails/'.date('Y/m'))
                             ->columnSpanFull(),
                         TextInput::make('title')
                             ->label(__('Title'))
                             ->required()
                             ->columnSpanFull()
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                         TextInput::make('slug')
                             ->label(__('Slug'))
                             ->required()

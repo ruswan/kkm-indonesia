@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
-use App\Models\Article;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;

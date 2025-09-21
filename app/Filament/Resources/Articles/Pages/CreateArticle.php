@@ -12,6 +12,7 @@ class CreateArticle extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['author_id'] = auth()->id();
+
         return $data;
     }
 }

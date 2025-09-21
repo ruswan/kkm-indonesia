@@ -3,8 +3,9 @@
 namespace App\Filament\Resources\Events\Schemas;
 
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class EventForm
@@ -13,20 +14,34 @@ class EventForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required(),
-                Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                DatePicker::make('start_date')
-                    ->required(),
-                DatePicker::make('end_date')
-                    ->required(),
-                TextInput::make('location')
-                    ->required(),
-                TextInput::make('registration_link'),
-                TextInput::make('organizer')
-                    ->required(),
+                Section::make()
+                    ->columns(2)
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->columnSpanFull()
+                            ->label(__('Event Name')),
+                        RichEditor::make('description')
+                            ->required()
+                            ->columnSpanFull()
+                            ->label(__('Event Description')),
+                        DatePicker::make('start_date')
+                            ->required()
+                            ->label(__('Start Date')),
+                        DatePicker::make('end_date')
+                            ->required()
+                            ->label(__('End Date')),
+                        TextInput::make('location')
+                            ->required()
+                            ->label(__('Location')),
+                        TextInput::make('registration_link')
+                            ->url()
+                            ->label(__('Registration Link')),
+                        TextInput::make('organizer')
+                            ->required()
+                            ->label(__('Organizer')),
+                    ]),
             ]);
     }
 }
