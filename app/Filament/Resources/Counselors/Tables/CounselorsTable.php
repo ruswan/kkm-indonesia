@@ -2,11 +2,7 @@
 
 namespace App\Filament\Resources\Counselors\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -19,18 +15,44 @@ class CounselorsTable
         return $table
             ->columns([
                 TextColumn::make('user.name')
-                    ->searchable(),
+                    ->label(__('Full Name'))
+                    ->searchable()
+                    ->wrap(),
                 TextColumn::make('registration_number')
+                    ->label(__('Registration Number'))
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
-                TextColumn::make('degree'),
-                TextColumn::make('province.name'),
-                TextColumn::make('regency.name'),
+                TextColumn::make('degree')
+                    ->label(__('Degree'))
+                    ->wrap(),
+                TextColumn::make('province.name')
+                    ->label(__('Province'))
+                    ->wrap()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('regency.name')
+                    ->label(__('Regency'))
+                    ->wrap()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('whatsapp_number')
+                    ->label(__('WhatsApp Number'))
                     ->searchable(),
                 TextColumn::make('contact_email')
+                    ->label(__('Contact Email'))
                     ->searchable(),
-                TextColumn::make('validation_status')
-                    ->searchable(),
+                TextColumn::make('status.name')
+                    ->label(__('Status'))
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Active' => 'success',
+                        'Inactive' => 'gray',
+                        'On Leave' => 'warning',
+                        'Suspended' => 'danger',
+                        'Retired' => 'info',
+                        'Terminated' => 'danger',
+                        'Probation' => 'warning',
+                        'Training' => 'primary',
+                        default => 'gray',
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -50,13 +72,6 @@ class CounselorsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
             ]);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Counselors\Schemas;
 
-use App\Models\Counselor;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class CounselorInfolist
@@ -12,32 +12,36 @@ class CounselorInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('user.name')
-                    ->label('User'),
-                TextEntry::make('registration_number'),
-                TextEntry::make('degree'),
-                TextEntry::make('province'),
-                TextEntry::make('city'),
-                TextEntry::make('whatsapp_number'),
-                TextEntry::make('contact_email'),
-                TextEntry::make('profile_photo')
-                    ->placeholder('-'),
-                TextEntry::make('instagram_link')
-                    ->placeholder('-'),
-                TextEntry::make('tiktok_link')
-                    ->placeholder('-'),
-                TextEntry::make('facebook_link')
-                    ->placeholder('-'),
-                TextEntry::make('validation_status'),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('deleted_at')
-                    ->dateTime()
-                    ->visible(fn (Counselor $record): bool => $record->trashed()),
+                Section::make()
+                    ->schema([
+                        TextEntry::make('user.name')
+                            ->label(__('Full Name')),
+                        TextEntry::make('registration_number')
+                            ->label(__('Registration Number')),
+                        TextEntry::make('degree')
+                            ->label(__('Degree')),
+                        TextEntry::make('province.name')
+                            ->label(__('Province')),
+                        TextEntry::make('regency.name')
+                            ->label(__('Regancy')),
+                        TextEntry::make('whatsapp_number')
+                            ->label(__('WhatsApp Number')),
+                        TextEntry::make('contact_email')
+                            ->label(__('Contact Email')),
+                        TextEntry::make('profile_photo')
+                            ->label(__('Profile Photo'))
+                            ->placeholder('-'),
+                        TextEntry::make('instagram_link')
+                            ->label(__('Instagram Link'))
+                            ->placeholder('-'),
+                        TextEntry::make('tiktok_link')
+                            ->label(__('TikTok Link'))
+                            ->placeholder('-'),
+                        TextEntry::make('facebook_link')
+                            ->label(__('Facebook Link'))
+                            ->placeholder('-'),
+                    ])->columnSpanFull()
+                    ->columns(2),
             ]);
     }
 }

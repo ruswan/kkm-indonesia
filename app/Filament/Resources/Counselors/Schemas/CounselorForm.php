@@ -16,11 +16,9 @@ class CounselorForm
             ->components([
                 Section::make()
                     ->schema([
-                        Select::make('user_id')
-                            ->relationship('user', 'name')
-                            ->preload()
-                            ->searchable()
-                            ->required(),
+                        TextInput::make('full_name')
+                            ->required()
+                            ->maxLength(150),
                         TextInput::make('registration_number')
                             ->required(),
                         TextInput::make('degree')
@@ -46,9 +44,11 @@ class CounselorForm
                         TextInput::make('instagram_link'),
                         TextInput::make('tiktok_link'),
                         TextInput::make('facebook_link'),
-                        TextInput::make('validation_status')
-                            ->required()
-                            ->default('pending'),
+                        Select::make('status_id')
+                            ->relationship('status', 'name')
+                            ->preload()
+                            ->searchable()
+                            ->required(),
                     ])->columnSpanFull()
                     ->columns(2),
             ]);

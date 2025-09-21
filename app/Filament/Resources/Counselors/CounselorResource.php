@@ -22,9 +22,14 @@ class CounselorResource extends Resource
 {
     protected static ?string $model = Counselor::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
 
     protected static ?string $recordTitleAttribute = 'registration_number';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Account Management');
+    }
 
     public static function form(Schema $schema): Schema
     {
