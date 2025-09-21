@@ -2,11 +2,7 @@
 
 namespace App\Filament\Resources\Events\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -19,19 +15,24 @@ class EventsTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Event Name'))
                     ->searchable(),
                 TextColumn::make('start_date')
+                    ->label(__('Start Date'))
                     ->date()
                     ->sortable(),
                 TextColumn::make('end_date')
+                    ->label(__('End Date'))
                     ->date()
                     ->sortable(),
                 TextColumn::make('location')
-                    ->searchable(),
+                    ->label(__('Location'))
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('registration_link')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('organizer')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -51,13 +52,6 @@ class EventsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
             ]);
     }
 }
