@@ -22,7 +22,7 @@ class CounselorResource extends Resource
 {
     protected static ?string $model = Counselor::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Identification;
 
     protected static ?string $recordTitleAttribute = 'registration_number';
 

@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -19,16 +20,25 @@ class ArticlesTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label(__('Title'))
+                    ->wrap()
                     ->searchable(),
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->label(__('Slug'))
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('category')
+                    ->label(__('Category'))
                     ->searchable(),
                 TextColumn::make('author.name')
-                    ->searchable(),
-                TextColumn::make('thumbnail')
+                    ->label(__('Author'))
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                ImageColumn::make('thumbnail')
+                    ->label(__('Thumbnail'))
                     ->searchable(),
                 TextColumn::make('published_at')
+                    ->label(__('Published At'))
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('created_at')
@@ -50,13 +60,6 @@ class ArticlesTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
             ]);
     }
 }

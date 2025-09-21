@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Articles\Schemas;
 
 use App\Models\Article;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class ArticleInfolist
@@ -12,27 +14,30 @@ class ArticleInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('title'),
-                TextEntry::make('slug'),
-                TextEntry::make('content')
+                Section::make()
+                    ->schema([
+                        ImageEntry::make('thumbnail')
+                            ->hiddenLabel()
+                            ->columnSpanFull(),
+                        TextEntry::make('title')
+                            ->label(__('Title'))
+                            ->columnSpanFull(),
+                        TextEntry::make('slug')
+                            ->label(__('Slug'))
+                            ->badge()
+                            ->columnSpanFull(),
+                        TextEntry::make('content')
+                            ->html()
+                            ->columnSpanFull(),
+                        TextEntry::make('category')
+                            ->label(__('Category')),
+                        TextEntry::make('author.name')
+                            ->label(__('Author')),
+                        TextEntry::make('published_at')
+                            ->dateTime()
+                            ->placeholder('-'),
+                    ])->columns(2)
                     ->columnSpanFull(),
-                TextEntry::make('category'),
-                TextEntry::make('author.name')
-                    ->label('Author'),
-                TextEntry::make('thumbnail')
-                    ->placeholder('-'),
-                TextEntry::make('published_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('deleted_at')
-                    ->dateTime()
-                    ->visible(fn (Article $record): bool => $record->trashed()),
             ]);
     }
 }
