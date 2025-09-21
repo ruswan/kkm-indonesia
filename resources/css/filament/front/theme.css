@@ -1,0 +1,16 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/Front/**/*';
+@source '../../../../resources/views/filament/front/**/*';
+
+.fi-topbar{
+    @apply lg:px-28;
+}
+
+.fi-topbar-nav-groups{
+     @apply w-full flex items-center justify-end gap-x-4;
+}
+
+.fi-topbar-nav-groups{
+    @apply ml-auto flex items-center gap-x-4;
+}
