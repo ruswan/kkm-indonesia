@@ -2,16 +2,13 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
+use App\Filament\Front\Pages\Home;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -33,12 +30,9 @@ class FrontPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Front/Resources'), for: 'App\Filament\Front\Resources')
             ->discoverPages(in: app_path('Filament/Front/Pages'), for: 'App\Filament\Front\Pages')
             ->pages([
-                Dashboard::class,
+                Home::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Front/Widgets'), for: 'App\Filament\Front\Widgets')
-            ->widgets([
-                FilamentInfoWidget::class,
-            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
