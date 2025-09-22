@@ -30,10 +30,6 @@ return new class extends Migration
         Schema::table('galleries', function (Blueprint $table) {
             $table->softDeletes();
         });
-
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->softDeletes();
-        });
     }
 
     /**

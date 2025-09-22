@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('counselors', function (Blueprint $table) {
-            $table->dropColumn('validation_status');
             $table->foreignId('status_id')->nullable()->after('validation_status')->constrained('counselor_statuses')->onDelete('set null');
         });
     }
@@ -23,7 +22,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('counselors', function (Blueprint $table) {
-            $table->string('validation_status', 50)->after('degree');
             $table->dropForeign(['status_id']);
             $table->dropColumn('status_id');
         });
