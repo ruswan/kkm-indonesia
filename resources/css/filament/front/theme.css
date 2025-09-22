@@ -8,9 +8,5 @@
 }
 
 .fi-topbar-nav-groups{
-     @apply w-full flex items-center justify-end gap-x-4;
-}
-
-.fi-topbar-nav-groups{
-    @apply ml-auto flex items-center gap-x-4;
+     @apply w-full hidden lg:flex items-center justify-end gap-x-4;
 }
