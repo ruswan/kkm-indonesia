@@ -15,3 +15,56 @@
 .fi-topbar-nav-groups{
      @apply w-full max-w-7xl mx-auto hidden lg:flex items-center justify-end gap-x-4;
 }
+
+
+/* Slider Start */
+.slider-container {
+    @apply relative w-full mx-auto;
+}
+
+.hero {
+    @apply relative overflow-hidden w-full h-96 md:h-[500px];
+}
+
+.slider-wrapper {
+    @apply flex;
+}
+
+.slider-slide {
+    @apply w-full flex-shrink-0;
+}
+
+.slider-image {
+    @apply w-full h-full object-cover;
+}
+
+.prev-button{
+    @apply absolute left-4 bg-white/50 hover:bg-white/75 rounded-full p-2 text-gray-800;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.next-button{
+    @apply absolute right-4 bg-white/50 hover:bg-white/75 rounded-full p-2 text-gray-800;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slider-icon{
+    @apply h-6 w-6;
+}
+
+.slider-dots{
+    @apply absolute bottom-4 flex space-x-2;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slider-dot{
+    @apply w-3 h-3 rounded-full bg-white/50 hover:bg-white/75 transition-all duration-300;
+}
+
+.slider-dot.active{
+    @apply bg-white;
+}
+/* Slider End */
