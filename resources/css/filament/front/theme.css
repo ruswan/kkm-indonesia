@@ -5,8 +5,13 @@
 
 .fi-topbar{
     @apply lg:px-28;
+    min-height: calc(var(--spacing)*20);
+}
+
+.fi-topbar-start{
+    @apply max-w-7xl mx-auto flex items-center gap-x-4;
 }
 
 .fi-topbar-nav-groups{
-     @apply w-full hidden lg:flex items-center justify-end gap-x-4;
+     @apply w-full max-w-7xl mx-auto hidden lg:flex items-center justify-end gap-x-4;
 }
