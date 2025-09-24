@@ -68,3 +68,7 @@
     @apply bg-white;
 }
 /* Slider End */
+
+.fi-header-heading{
+    display: none;
+}
