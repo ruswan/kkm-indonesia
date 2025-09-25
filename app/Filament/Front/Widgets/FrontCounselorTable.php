@@ -17,6 +17,8 @@ use Filament\Tables\Columns\Layout\Stack;
 use Illuminate\Database\Eloquent\Builder;
 use ToneGabes\Filament\Icons\Enums\Phosphor;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
 
 class FrontCounselorTable extends TableWidget
 {
@@ -83,8 +85,16 @@ class FrontCounselorTable extends TableWidget
                 'xl' => 4,
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('province_id')
+                    ->label('Provinsi')
+                    ->relationship('province', 'name')
+                    ->placeholder('Semua Provinsi'),
+                SelectFilter::make('regency_id')
+                    ->label('Kota/Kabupaten')
+                    ->relationship('regency', 'name')
+                    ->placeholder('Semua Kota/Kabupaten'),
+            ], FiltersLayout::AboveContent)
+            ->deferFilters(false)
             ->paginated(false);
     }
 }
