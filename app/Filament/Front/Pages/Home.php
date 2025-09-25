@@ -2,9 +2,10 @@
 
 namespace App\Filament\Front\Pages;
 
-use App\Filament\Front\Widgets\FrontStatOverWiew;
-use Filament\Pages\Page;
 use Filament\Panel;
+use Filament\Pages\Page;
+use App\Filament\Front\Widgets\FrontStatOverWiew;
+use App\Filament\Front\Widgets\FrontCounselorTable;
 
 class Home extends Page
 {
@@ -25,6 +26,7 @@ class Home extends Page
     {
         return [
             FrontStatOverWiew::class,
+            FrontCounselorTable::class,
         ];
     }
 }

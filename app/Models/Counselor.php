@@ -144,7 +144,7 @@ class Counselor extends Model
      */
     public function getFullLocationAttribute()
     {
-        return $this->city.', '.$this->province;
+        return $this->city . ', ' . $this->province;
     }
 
     /**
