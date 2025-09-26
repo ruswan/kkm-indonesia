@@ -47,7 +47,20 @@ class FrontPanelProvider extends PanelProvider
             ])
             ->authMiddleware([])
             ->viteTheme('resources/css/filament/front/theme.css')
-            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
-            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'));
+            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn() => request()->is('/') ? view('partials.front-header') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn() => view('partials.front-footer'))
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_AFTER,
+
+                function () {
+                    if (request()->is('about')) {
+                        return view('partials.jumbotron', ['title' => 'Tentang Kami']);
+                    } elseif (request()->is('counselor')) {
+                        return view('partials.jumbotron', ['title' => 'Direktori Konselor']);
+                    } else {
+                        return '';
+                    }
+                }
+            );
     }
 }
