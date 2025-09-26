@@ -57,6 +57,8 @@ class FrontPanelProvider extends PanelProvider
                         return view('partials.jumbotron', ['title' => 'Tentang KKMI']);
                     } elseif (request()->is('counselor')) {
                         return view('partials.jumbotron', ['title' => 'Direktori Konselor']);
+                    } elseif (request()->is('article')) {
+                        return view('partials.jumbotron', ['title' => 'Artikel']);
                     } else {
                         return '';
                     }
