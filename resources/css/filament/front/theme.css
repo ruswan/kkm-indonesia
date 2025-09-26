@@ -8,6 +8,11 @@
 }
 
 /* Start Topbar */
+.fi-topbar{
+    @apply shadow-sm;
+    background-color: #fdfbf8;
+}
+
 .fi-topbar-ctn{
     background-color: #fdfbf8;
 }
