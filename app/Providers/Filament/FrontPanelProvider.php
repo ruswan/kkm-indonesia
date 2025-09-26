@@ -2,20 +2,20 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Panel;
-use Filament\PanelProvider;
 use App\Filament\Front\Pages\Home;
-use Filament\Support\Colors\Color;
-use Filament\View\PanelsRenderHook;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Cookie\Middleware\EncryptCookies;
 use Filament\Http\Middleware\AuthenticateSession;
-use Illuminate\Routing\Middleware\SubstituteBindings;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Filament\Panel;
+use Filament\PanelProvider;
+use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class FrontPanelProvider extends PanelProvider
 {
@@ -47,6 +47,7 @@ class FrontPanelProvider extends PanelProvider
             ])
             ->authMiddleware([])
             ->viteTheme('resources/css/filament/front/theme.css')
-            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn() => request()->is('/') ? view('partials.front-header') : '');
+            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'));
     }
 }

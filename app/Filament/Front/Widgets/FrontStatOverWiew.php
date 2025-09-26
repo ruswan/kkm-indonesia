@@ -2,9 +2,9 @@
 
 namespace App\Filament\Front\Widgets;
 
-use App\Models\Event;
-use App\Models\Province;
 use App\Models\Counselor;
+use App\Models\Province;
+use App\Models\Regency;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -15,15 +15,12 @@ class FrontStatOverWiew extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            Stat::make(__('Counselors'), Counselor::count())
-                ->icon('heroicon-o-users')
-                ->color('success'),
-            Stat::make(__('Provinces'), Counselor::whereHas('province')->count())
-                ->icon('heroicon-o-map')
-                ->color('primary'),
-            Stat::make(__('Regencies'), Counselor::whereHas('regency')->count())
-                ->icon('heroicon-o-map-pin')
-                ->color('warning'),
+            Stat::make('', Counselor::count())
+                ->description(__('Counselors')),
+            Stat::make('', Province::whereHas('counselors')->count())
+                ->description(__('Province')),
+            Stat::make('', Regency::whereHas('counselors')->count())
+                ->description(__('Regency')),
         ];
     }
 }

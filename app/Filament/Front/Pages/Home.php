@@ -2,10 +2,10 @@
 
 namespace App\Filament\Front\Pages;
 
-use Filament\Panel;
-use Filament\Pages\Page;
-use App\Filament\Front\Widgets\FrontStatOverWiew;
 use App\Filament\Front\Widgets\FrontCounselorTable;
+use App\Filament\Front\Widgets\FrontStatOverWiew;
+use Filament\Pages\Page;
+use Filament\Panel;
 
 class Home extends Page
 {
