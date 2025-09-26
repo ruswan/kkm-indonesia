@@ -47,8 +47,8 @@ class FrontPanelProvider extends PanelProvider
             ])
             ->authMiddleware([])
             ->viteTheme('resources/css/filament/front/theme.css')
-            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn() => request()->is('/') ? view('partials.front-header') : '')
-            ->renderHook(PanelsRenderHook::BODY_END, fn() => view('partials.front-footer'))
+            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'))
             ->renderHook(
                 PanelsRenderHook::TOPBAR_AFTER,
 

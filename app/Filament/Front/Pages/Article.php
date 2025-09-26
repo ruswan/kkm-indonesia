@@ -4,15 +4,14 @@ namespace App\Filament\Front\Pages;
 
 use App\Models\Article as ArticleModel;
 use Filament\Pages\Page;
-use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Contracts\HasTable;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
-use Filament\Support\Enums\FontWeight;
-
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
 
 class Article extends Page implements HasTable
 {
@@ -57,8 +56,8 @@ class Article extends Page implements HasTable
                         TextColumn::make('published_at')
                             ->label(__('Published'))
                             ->dateTime('M j, Y')
-                            ->color(fn($record) => $record->published_at ? 'success' : 'warning')
-                            ->icon(fn($record) => $record->published_at ? 'heroicon-o-check-circle' : 'heroicon-o-clock'),
+                            ->color(fn ($record) => $record->published_at ? 'success' : 'warning')
+                            ->icon(fn ($record) => $record->published_at ? 'heroicon-o-check-circle' : 'heroicon-o-clock'),
                     ])->space(2),
 
                 ])->from('md')->columnSpanFull(),
@@ -69,6 +68,8 @@ class Article extends Page implements HasTable
                 'lg' => 2,
                 'xl' => 2,
             ])
+            ->recordAction('view')
+            ->recordUrl(fn ($record) => url("/article/{$record->slug}"))
             ->deferLoading();
     }
 }
