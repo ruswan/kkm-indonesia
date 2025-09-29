@@ -51,7 +51,6 @@ class FrontPanelProvider extends PanelProvider
             ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'))
             ->renderHook(
                 PanelsRenderHook::TOPBAR_AFTER,
-
                 function () {
                     if (request()->is('about')) {
                         return view('partials.jumbotron', ['title' => 'Tentang KKMI']);
@@ -59,6 +58,13 @@ class FrontPanelProvider extends PanelProvider
                         return view('partials.jumbotron', ['title' => 'Direktori Konselor']);
                     } elseif (request()->is('article')) {
                         return view('partials.jumbotron', ['title' => 'Artikel']);
+                    } elseif (request()->is('article/*')) {
+                        // Ambil record dari route parameter
+                        $record = request()->route('slug');
+                        $record = \App\Models\Article::where('slug', $record)->first();
+                        $title = $record ? $record->title : 'Detail Artikel';
+
+                        return view('partials.jumbotron', ['title' => $title]);
                     } else {
                         return '';
                     }

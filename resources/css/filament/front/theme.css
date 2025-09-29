@@ -136,6 +136,11 @@
 }
 
 /* Content Start */
+
+.thumbnail-image{
+    @apply w-full rounded-lg shadow-lg object-cover;
+}
+
 .content-section{
     @apply container mx-auto;
     max-width: 1200px;
