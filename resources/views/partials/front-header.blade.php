@@ -11,8 +11,8 @@
             </a>
         </div>
         <!-- Gambar Hero -->
-        <div class="w-full md:w-1/2 relative h-64 md:h-auto">
-            <div class="absolute -right-20 -bottom-10 md:-right-10 md:top-0 md:bottom-auto">
+        <div class="hero-image-container">
+            <div class="hero-image-wrapper">
                 <img src="{{ asset('images/ilustrasi.png') }}" alt="Hero Image" class="hero-image">
             </div>
         </div>

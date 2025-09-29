@@ -53,6 +53,14 @@
     @apply text-gray-600 mb-8;
 }
 
+.hero-image-container{
+    /* @apply w-full md:w-1/2 relative h-64 md:h-auto; */
+}
+
+.hero-image-wrapper {
+    /* @apply absolute -right-20 -bottom-10 md:-right-10 md:top-0 md:bottom-auto; */
+}
+
 .search-button{
     @apply inline-block bg-teal-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-teal-700 transition duration-300 transform hover:-translate-y-1;
 }
@@ -71,6 +79,10 @@
 
 .fi-topbar-item{
     @apply text-gray-600 hover:text-teal-600 transition duration-300;
+}
+
+.fi-ta-header-ctn{
+    border-color: transparent !important;
 }
 /* Start Widget */
 
