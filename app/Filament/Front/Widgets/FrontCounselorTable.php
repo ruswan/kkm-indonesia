@@ -92,6 +92,7 @@ class FrontCounselorTable extends TableWidget
                     ->placeholder('Semua Kota/Kabupaten'),
             ], FiltersLayout::AboveContent)
             ->filtersFormColumns(2)
-            ->deferFilters(false);
+            ->deferFilters(false)
+            ->paginated([10, 25]);
     }
 }
