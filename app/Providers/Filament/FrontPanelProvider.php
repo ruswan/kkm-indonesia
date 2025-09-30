@@ -26,7 +26,7 @@ class FrontPanelProvider extends PanelProvider
             ->path('/')
             ->topNavigation()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Teal,
             ])
             ->discoverResources(in: app_path('Filament/Front/Resources'), for: 'App\Filament\Front\Resources')
             ->discoverPages(in: app_path('Filament/Front/Pages'), for: 'App\Filament\Front\Pages')
@@ -47,8 +47,8 @@ class FrontPanelProvider extends PanelProvider
             ])
             ->authMiddleware([])
             ->viteTheme('resources/css/filament/front/theme.css')
-            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
-            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'))
+            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn() => request()->is('/') ? view('partials.front-header') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn() => view('partials.front-footer'))
             ->renderHook(
                 PanelsRenderHook::TOPBAR_AFTER,
                 function () {

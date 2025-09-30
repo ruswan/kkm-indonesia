@@ -81,6 +81,10 @@
     @apply text-gray-600 hover:text-teal-600 transition duration-300;
 }
 
+.fi-topbar-item-label{
+    @apply text-base;
+}
+
 .fi-ta-header-ctn{
     border-color: transparent !important;
 }

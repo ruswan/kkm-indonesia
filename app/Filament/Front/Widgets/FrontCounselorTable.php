@@ -18,12 +18,14 @@ use ToneGabes\Filament\Icons\Enums\Phosphor;
 
 class FrontCounselorTable extends TableWidget
 {
+    protected string $view = 'filament.front.widgets.front-counselor-table';
+
     protected int|string|array $columnSpan = 'full';
 
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Direktori Konselor')
+            ->heading('')
             ->query(fn (): Builder => Counselor::query())
             ->columns([
                 Split::make([

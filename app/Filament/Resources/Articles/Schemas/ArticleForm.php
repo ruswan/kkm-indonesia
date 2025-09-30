@@ -24,6 +24,7 @@ class ArticleForm
                             ->required()
                             ->image()
                             ->directory('articles/thumbnails/'.date('Y/m'))
+                            ->visibility('public')
                             ->columnSpanFull(),
                         TextInput::make('title')
                             ->label(__('Title'))
