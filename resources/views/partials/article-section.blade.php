@@ -1,6 +1,6 @@
-<x-filament-widgets::widget>
-    <!-- Bagian Artikel Terbaru -->
-    <section class="py-20">
+<section class="bg-white py-20">
+    <div class=" fi-main fi-width-7xl">
+
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center brand-text mb-4">Artikel Terbaru</h2>
             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Baca artikel, tips, dan panduan terbaru seputar
@@ -29,8 +29,5 @@
                     </a>
                 @endforeach
 
-
             </div>
-        </div>
-    </section>
-</x-filament-widgets::widget>
+</section>

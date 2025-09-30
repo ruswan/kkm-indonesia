@@ -169,7 +169,7 @@
 
 /* Footer Start */
 .footer{
-    @apply bg-gray-800 text-white mt-10;
+    @apply bg-gray-800 text-white;
 }
 
 .footer-container{

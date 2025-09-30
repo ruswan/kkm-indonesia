@@ -8,7 +8,7 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/private/thumbnail/{article}', function (Article $article) {
-    $path = storage_path('app/private/' . $article->thumbnail);
+    $path = storage_path('app/private/'.$article->thumbnail);
 
     if (! file_exists($path)) {
         abort(404);
