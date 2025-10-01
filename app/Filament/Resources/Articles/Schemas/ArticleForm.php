@@ -23,7 +23,7 @@ class ArticleForm
                             ->label(__('Thumbnail'))
                             ->required()
                             ->image()
-                            ->directory('articles/thumbnails/' . date('Y/m'))
+                            ->directory('articles/thumbnails/'.date('Y/m'))
                             ->visibility('public')
                             ->columnSpanFull(),
                         TextInput::make('title')
@@ -31,7 +31,7 @@ class ArticleForm
                             ->required()
                             ->columnSpanFull()
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                         TextInput::make('slug')
                             ->label(__('Slug'))
                             ->required()

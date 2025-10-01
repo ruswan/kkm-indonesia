@@ -6,6 +6,7 @@ use App\Filament\Resources\Galleries\Pages\CreateGallery;
 use App\Filament\Resources\Galleries\Pages\EditGallery;
 use App\Filament\Resources\Galleries\Pages\ListGalleries;
 use App\Filament\Resources\Galleries\Pages\ViewGallery;
+use App\Filament\Resources\Galleries\RelationManagers\ImagesRelationManager;
 use App\Filament\Resources\Galleries\Schemas\GalleryForm;
 use App\Filament\Resources\Galleries\Schemas\GalleryInfolist;
 use App\Filament\Resources\Galleries\Tables\GalleriesTable;
@@ -44,7 +45,7 @@ class GalleryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ImagesRelationManager::class,
         ];
     }
 
