@@ -3,7 +3,6 @@
 namespace App\Filament\Front\Pages;
 
 use App\Filament\Front\Widgets\FrontCounselorTable;
-use App\Filament\Front\Widgets\FrontStatOverWiew;
 use Filament\Pages\Page;
 use Filament\Panel;
 
@@ -25,7 +24,6 @@ class Home extends Page
     protected function getHeaderWidgets(): array
     {
         return [
-            FrontStatOverWiew::class,
             FrontCounselorTable::class,
         ];
     }

@@ -1,8 +1,8 @@
 <section class="bg-white py-20">
-    <div class=" fi-main fi-width-7xl">
+    <div class="fi-main fi-width-7xl">
 
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center brand-text mb-4">Artikel Terbaru</h2>
+            <h2 class="text-3xl font-bold text-center brand-text mb-4 header-section">Artikel Terbaru</h2>
             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Baca artikel, tips, dan panduan terbaru seputar
                 dunia menyusui dari para ahli.</p>
 

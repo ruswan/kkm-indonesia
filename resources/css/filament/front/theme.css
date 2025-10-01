@@ -3,6 +3,10 @@
 @source '../../../../app/Filament/Front/**/*';
 @source '../../../../resources/views/filament/front/**/*';
 
+.fi-main-ctn{
+    @apply min-h-0;
+}
+
 .fi-body{
     background-color: #fdfbf8;
 }
@@ -105,7 +109,7 @@
     font-weight: 700;
     font-size: 3rem;
     line-height: 2.25rem;
-    color: #4A7C7A;
+    color: teal;
 }
 
 .fi-wi-stats-overview-stat-description{
@@ -143,6 +147,10 @@
 
 .thumbnail-image{
     @apply w-full rounded-lg shadow-lg object-cover;
+}
+
+.header-section{
+    @apply text-teal-600;
 }
 
 .content-section{
