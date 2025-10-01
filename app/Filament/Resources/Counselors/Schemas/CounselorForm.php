@@ -41,9 +41,15 @@ class CounselorForm
                         FileUpload::make('profile_photo')
                             ->image()
                             ->nullable(),
-                        TextInput::make('instagram_link'),
-                        TextInput::make('tiktok_link'),
-                        TextInput::make('facebook_link'),
+                        TextInput::make('instagram_link')
+                            ->label('Instagram Account')
+                            ->helperText('Start with @'),
+                        TextInput::make('tiktok_link')
+                            ->label('TikTok Account')
+                            ->helperText('Start with @'),
+                        TextInput::make('facebook_link')
+                            ->label('Facebook Account')
+                            ->helperText('Only username, without https://facebook.com/'),
                         Select::make('status_id')
                             ->relationship('status', 'name')
                             ->preload()
