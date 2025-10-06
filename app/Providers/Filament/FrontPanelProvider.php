@@ -50,6 +50,7 @@ class FrontPanelProvider extends PanelProvider
             ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
             ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-stat-overview') : '')
             ->renderHook(PanelsRenderHook::BODY_END, fn () => request()->is('/') ? view('partials.article-section') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => request()->is('/') ? view('partials.event-section') : '')
             ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'))
             ->renderHook(
                 PanelsRenderHook::TOPBAR_AFTER,
@@ -65,6 +66,15 @@ class FrontPanelProvider extends PanelProvider
                         $record = request()->route('slug');
                         $record = \App\Models\Article::where('slug', $record)->first();
                         $title = $record ? $record->title : 'Detail Artikel';
+
+                        return view('partials.jumbotron', ['title' => $title]);
+                    } elseif (request()->is('event')) {
+                        return view('partials.jumbotron', ['title' => 'Detail Event']);
+                    } elseif (request()->is('event/*')) {
+                        // Ambil record dari route parameter
+                        $record = request()->route('slug');
+                        $record = \App\Models\Event::where('slug', $record)->first();
+                        $title = $record ? $record->name : 'Detail Event';
 
                         return view('partials.jumbotron', ['title' => $title]);
                     } else {

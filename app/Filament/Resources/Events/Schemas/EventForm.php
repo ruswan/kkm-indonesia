@@ -6,7 +6,9 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class EventForm
 {
@@ -21,7 +23,15 @@ class EventForm
                         TextInput::make('name')
                             ->required()
                             ->columnSpanFull()
-                            ->label(__('Event Name')),
+                            ->label(__('Event Name'))
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                        TextInput::make('slug')
+                            ->label(__('Slug'))
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->columnSpanFull()
+                            ->readOnly(),
                         RichEditor::make('description')
                             ->required()
                             ->columnSpanFull()

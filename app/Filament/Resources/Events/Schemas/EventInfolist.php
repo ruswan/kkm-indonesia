@@ -18,6 +18,7 @@ class EventInfolist
                     ->schema([
                         TextEntry::make('name'),
                         TextEntry::make('description')
+                            ->html()
                             ->columnSpanFull(),
                         TextEntry::make('start_date')
                             ->date(),
