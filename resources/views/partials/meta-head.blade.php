@@ -17,7 +17,7 @@
         $description = $record ? Str::limit(strip_tags($record->content), 150) : 'Detail Artikel';
         $image =
             $record && $record->thumbnail
-                ? route('private.thumbnail', ['article' => $record])
+                ? route('public.thumbnail', ['article' => $record])
                 : asset('images/kkmi.png');
     } elseif (request()->is('event')) {
         $title = 'Event';
@@ -28,7 +28,7 @@
         $title = $record ? $record->name : 'Detail Event';
         $description = $record ? Str::limit(strip_tags($record->description), 150) : 'Detail Event';
         $image =
-            $record && $record->thumbnail ? route('private.thumbnail', ['event' => $record]) : asset('images/kkmi.png');
+            $record && $record->thumbnail ? route('public.thumbnail', ['event' => $record]) : asset('images/kkmi.png');
     } else {
         $title = 'Komunitas Konselor Menyusui Indonesia';
         $description = 'Bersama Meningkatkan Dukungan Menyusui di Indonesia';
