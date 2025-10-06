@@ -9,6 +9,8 @@ class Article extends Page
 {
     protected string $view = 'filament.front.pages.article';
 
+    protected static ?string $navigationLabel = 'Artikel';
+
     protected function getHeaderWidgets(): array
     {
         return [

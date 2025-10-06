@@ -12,7 +12,7 @@ class Home extends Page
 
     protected static ?int $navigationSort = -2;
 
-    protected static ?string $navigationLabel = 'Home';
+    protected static ?string $navigationLabel = 'Beranda';
 
     protected string $view = 'filament.front.pages.home';
 

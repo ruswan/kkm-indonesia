@@ -7,4 +7,6 @@ use Filament\Pages\Page;
 class About extends Page
 {
     protected string $view = 'filament.front.pages.about';
+
+    protected static ?string $navigationLabel = 'Tentang KKMI';
 }
