@@ -1,26 +1,26 @@
-<section class="bg-white py-20">
+<section class="article-section">
     <div class="fi-main fi-width-7xl">
 
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center brand-text mb-4 header-section">Artikel Terbaru</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Baca artikel, tips, dan panduan terbaru seputar
+        <div class="article-container">
+            <h2 class="article-header-title brand-text header-section">Artikel Terbaru</h2>
+            <p class="article-header-description">Baca artikel, tips, dan panduan terbaru seputar
                 dunia menyusui dari para ahli.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="article-grid">
 
                 @php
                     $articles = \App\Models\Article::latest()->take(3)->get();
                 @endphp
                 @foreach ($articles as $article)
-                    <a href="{{ url('/article/' . $article->slug) }}" class="no-underline">
-                        <div class="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <a href="{{ url('/article/' . $article->slug) }}" class="article-card-link">
+                        <div class="article-card">
                             <img src="{{ $article->thumbnail ? route('private.thumbnail', ['article' => $article]) : 'https://placehold.co/600x400/FBEAE8/4A7C7A?text=No+Image' }}"
-                                alt="Gambar artikel tentang {{ $article->title }}" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="font-bold text-xl brand-text mt-2 mb-3">{{ $article->title }}</h3>
-                                <p class="text-gray-600 text-sm mb-4">
+                                alt="Gambar artikel tentang {{ $article->title }}" class="article-card-image">
+                            <div class="article-card-content">
+                                <h3 class="article-card-title brand-text">{{ $article->title }}</h3>
+                                <p class="article-card-excerpt">
                                     {{ Str::limit(strip_tags($article->content), 100, '...') }}</p>
-                                <div class="text-xs text-gray-500">
+                                <div class="article-card-meta">
                                     <span>Oleh {{ $article->author->name }}</span> |
                                     <span>{{ $article->published_at->format('d M Y') }}</span>
                                 </div>
