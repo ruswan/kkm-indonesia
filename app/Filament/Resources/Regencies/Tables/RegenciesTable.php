@@ -14,8 +14,7 @@ class RegenciesTable
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('ID'),
                 TextColumn::make('province.name')
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('name')

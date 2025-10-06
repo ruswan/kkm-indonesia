@@ -26,7 +26,7 @@ class FrontCounselorTable extends TableWidget
     {
         return $table
             ->heading('')
-            ->query(fn (): Builder => Counselor::query())
+            ->query(fn (): Builder => Counselor::query()->where('status_id', 1)->latest())
             ->columns([
                 Split::make([
                     Stack::make([

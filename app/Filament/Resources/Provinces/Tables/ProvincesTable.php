@@ -13,8 +13,7 @@ class ProvincesTable
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('ID'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('regencies_count')
