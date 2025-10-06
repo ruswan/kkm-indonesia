@@ -23,6 +23,7 @@ class ArticleForm
                             ->label(__('Thumbnail'))
                             ->required()
                             ->image()
+                            ->disk('public')
                             ->directory('articles/thumbnails/'.date('Y/m'))
                             ->visibility('public')
                             ->columnSpanFull(),
