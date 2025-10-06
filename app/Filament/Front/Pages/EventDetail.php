@@ -10,6 +10,7 @@ use Filament\Infolists\Contracts\HasInfolists;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Tapp\FilamentSocialShare\Actions\SocialShareAction;
 
 class EventDetail extends Page implements HasInfolists
 {
@@ -73,6 +74,12 @@ class EventDetail extends Page implements HasInfolists
                             ->url($this->event->registration_link)
                             ->openUrlInNewTab()
                             ->extraAttributes(['class' => 'event-button']),
+
+                        SocialShareAction::make()
+                            ->x()
+                            ->facebook()
+                            ->linkedin()
+                            ->email(),
                     ]),
             ]);
     }

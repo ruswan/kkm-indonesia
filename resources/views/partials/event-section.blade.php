@@ -21,7 +21,9 @@
                                     <p class="event-date-day brand-text">{{ $event->start_date->format('d') }}</p>
                                 </div>
                                 <div class="event-info">
-                                    <h3 class="event-title brand-text">{{ $event->name }}</h3>
+                                    <a href="{{ url('event/' . $event->slug) }}">
+                                        <h3 class="event-title brand-text">{{ $event->name }}</h3>
+                                    </a>
                                     <p class="event-location">{{ $event->location }}</p>
                                 </div>
                             </div>

@@ -11,6 +11,7 @@ use Filament\Pages\Page;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Tapp\FilamentSocialShare\Actions\SocialShareAction;
 
 class ArticleDetail extends Page implements HasInfolists
 {
@@ -76,6 +77,11 @@ class ArticleDetail extends Page implements HasInfolists
                             ->columnSpanFull()
                             ->html()
                             ->extraAttributes(['class' => 'prose lg:prose-lg max-w-none text-gray-800 mt-4']),
+                        SocialShareAction::make()
+                            ->x()
+                            ->facebook()
+                            ->linkedin()
+                            ->email(),
                     ])
                     ->columnSpanFull(),
             ])

@@ -3,6 +3,8 @@
 @source '../../../../app/Filament/Front/**/*';
 @source '../../../../resources/views/filament/front/**/*';
 
+@source '../../../../vendor/tapp/filament-social-share';
+
 /* Brand Colors */
 :root {
     --brand-teal: #4A7C7A;
