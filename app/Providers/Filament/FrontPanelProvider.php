@@ -47,6 +47,7 @@ class FrontPanelProvider extends PanelProvider
             ])
             ->authMiddleware([])
             ->viteTheme('resources/css/filament/front/theme.css')
+            ->renderHook(PanelsRenderHook::HEAD_START, fn () => view('partials.meta-head'))
             ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
             ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-stat-overview') : '')
             ->renderHook(PanelsRenderHook::BODY_END, fn () => request()->is('/') ? view('partials.article-section') : '')
@@ -55,31 +56,27 @@ class FrontPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::TOPBAR_AFTER,
                 function () {
-                    if (request()->is('about')) {
-                        return view('partials.jumbotron', ['title' => 'Tentang KKMI']);
-                    } elseif (request()->is('counselor')) {
-                        return view('partials.jumbotron', ['title' => 'Direktori Konselor']);
-                    } elseif (request()->is('article')) {
-                        return view('partials.jumbotron', ['title' => 'Artikel']);
-                    } elseif (request()->is('article/*')) {
-                        // Ambil record dari route parameter
-                        $record = request()->route('slug');
-                        $record = \App\Models\Article::where('slug', $record)->first();
-                        $title = $record ? $record->title : 'Detail Artikel';
+                    return match (true) {
+                        request()->is('about') => view('partials.jumbotron', ['title' => 'Tentang KKMI']),
+                        request()->is('counselor') => view('partials.jumbotron', ['title' => 'Direktori Konselor']),
+                        request()->is('article') => view('partials.jumbotron', ['title' => 'Artikel']),
+                        request()->is('article/*') => (function () {
+                            $record = request()->route('slug');
+                            $record = \App\Models\Article::where('slug', $record)->first();
+                            $title = $record ? $record->title : 'Detail Artikel';
 
-                        return view('partials.jumbotron', ['title' => $title]);
-                    } elseif (request()->is('event')) {
-                        return view('partials.jumbotron', ['title' => 'Detail Event']);
-                    } elseif (request()->is('event/*')) {
-                        // Ambil record dari route parameter
-                        $record = request()->route('slug');
-                        $record = \App\Models\Event::where('slug', $record)->first();
-                        $title = $record ? $record->name : 'Detail Event';
+                            return view('partials.jumbotron', ['title' => $title]);
+                        })(),
+                        request()->is('event') => view('partials.jumbotron', ['title' => 'Event']),
+                        request()->is('event/*') => (function () {
+                            $record = request()->route('slug');
+                            $record = \App\Models\Event::where('slug', $record)->first();
+                            $title = $record ? $record->name : 'Detail Event';
 
-                        return view('partials.jumbotron', ['title' => $title]);
-                    } else {
-                        return '';
-                    }
+                            return view('partials.jumbotron', ['title' => $title]);
+                        })(),
+                        default => ''
+                    };
                 }
             );
     }
