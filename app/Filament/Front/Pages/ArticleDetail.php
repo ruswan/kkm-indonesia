@@ -78,6 +78,9 @@ class ArticleDetail extends Page implements HasInfolists
                             ->html()
                             ->extraAttributes(['class' => 'prose lg:prose-lg max-w-none text-gray-800 mt-4']),
                         SocialShareAction::make()
+                            ->label('Share')
+                            ->tooltip('Share this article')
+                            ->modalHeading('Share this article')
                             ->x()
                             ->facebook()
                             ->linkedin()

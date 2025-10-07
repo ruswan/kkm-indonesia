@@ -76,6 +76,9 @@ class EventDetail extends Page implements HasInfolists
                             ->extraAttributes(['class' => 'event-button']),
 
                         SocialShareAction::make()
+                            ->label('Share')
+                            ->tooltip('Share this article')
+                            ->modalHeading('Share this article')
                             ->x()
                             ->facebook()
                             ->linkedin()
