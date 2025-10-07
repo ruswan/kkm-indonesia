@@ -36,6 +36,7 @@ class ImagesRelationManager extends RelationManager
                             ->maxLength(65535),
                         FileUpload::make('image_path')
                             ->directory('galleries/images')
+                            ->disk('public')
                             ->image()
                             ->required(),
                     ])
@@ -53,6 +54,7 @@ class ImagesRelationManager extends RelationManager
                     ->searchable(),
                 ImageColumn::make('image_path')
                     ->imageSize(100, 100)
+                    ->disk('public')
                     ->label('Image'),
                 TextColumn::make('created_at')
                     ->dateTime()

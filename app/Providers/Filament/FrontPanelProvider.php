@@ -49,12 +49,12 @@ class FrontPanelProvider extends PanelProvider
             ])
             ->authMiddleware([])
             ->viteTheme('resources/css/filament/front/theme.css')
-            ->renderHook(PanelsRenderHook::HEAD_START, fn() => view('partials.meta-head'))
-            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn() => request()->is('/') ? view('partials.front-header') : '')
-            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn() => request()->is('/') ? view('partials.front-stat-overview') : '')
-            ->renderHook(PanelsRenderHook::BODY_END, fn() => request()->is('/') ? view('partials.article-section') : '')
-            ->renderHook(PanelsRenderHook::BODY_END, fn() => request()->is('/') ? view('partials.event-section') : '')
-            ->renderHook(PanelsRenderHook::BODY_END, fn() => view('partials.front-footer'))
+            ->renderHook(PanelsRenderHook::HEAD_START, fn () => view('partials.meta-head'))
+            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-header') : '')
+            ->renderHook(PanelsRenderHook::TOPBAR_AFTER, fn () => request()->is('/') ? view('partials.front-stat-overview') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => request()->is('/') ? view('partials.article-section') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => request()->is('/') ? view('partials.event-section') : '')
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('partials.front-footer'))
             ->renderHook(
                 PanelsRenderHook::TOPBAR_AFTER,
                 function () {
@@ -74,6 +74,14 @@ class FrontPanelProvider extends PanelProvider
                             $record = request()->route('slug');
                             $record = \App\Models\Event::where('slug', $record)->first();
                             $title = $record ? $record->name : 'Detail Event';
+
+                            return view('partials.jumbotron', ['title' => $title]);
+                        })(),
+                        request()->is('gallery') => view('partials.jumbotron', ['title' => 'Galeri']),
+                        request()->is('galeri/*') => (function () {
+                            $record = request()->route('slug');
+                            $record = \App\Models\Gallery::where('slug', $record)->first();
+                            $title = $record ? $record->title : 'Detail Galeri';
 
                             return view('partials.jumbotron', ['title' => $title]);
                         })(),

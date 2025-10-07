@@ -29,6 +29,18 @@
         $description = $record ? Str::limit(strip_tags($record->description), 150) : 'Detail Event';
         $image =
             $record && $record->thumbnail ? route('public.thumbnail', ['event' => $record]) : asset('images/kkmi.png');
+    } elseif (request()->is('gallery')) {
+        $title = 'Galeri';
+        $description = 'Lihat koleksi gambar menarik seputar Komunitas Konselor Menyusui Indonesia';
+    } elseif (request()->is('galeri/*')) {
+        $record = request()->route('slug');
+        $record = \App\Models\Gallery::where('slug', $record)->first();
+        $title = $record ? $record->title : 'Detail Galeri';
+        $description = $record ? Str::limit(strip_tags($record->description), 150) : 'Detail Galeri';
+        $image =
+            $record && $record->thumbnail
+                ? route('public.thumbnail', ['gallery' => $record])
+                : asset('images/kkmi.png');
     } else {
         $title = 'Komunitas Konselor Menyusui Indonesia';
         $description = 'Bersama Meningkatkan Dukungan Menyusui di Indonesia';
