@@ -26,7 +26,7 @@ class FrontCounselorTable extends TableWidget
     {
         return $table
             ->heading('')
-            ->query(fn (): Builder => Counselor::query()->where('status_id', 1)->latest())
+            ->query(fn(): Builder => Counselor::query()->where('status_id', 1)->latest())
             ->columns([
                 Split::make([
                     Stack::make([
@@ -38,7 +38,8 @@ class FrontCounselorTable extends TableWidget
                     ]),
                     Stack::make([
                         TextColumn::make('user.name')
-                            ->weight(FontWeight::ExtraBold),
+                            ->weight(FontWeight::ExtraBold)
+                            ->searchable(),
                         TextColumn::make('registration_number')
                             ->extraAttributes(['class' => 'italic']),
                         TextColumn::make('regency.name'),
@@ -48,29 +49,29 @@ class FrontCounselorTable extends TableWidget
                 Panel::make([
                     TextColumn::make('whatsapp_number')
                         ->icon(Phosphor::WhatsappLogo)
-                        ->url(fn (Counselor $record): ?string => $record->whatsapp_number ? 'https://wa.me/'.preg_replace('/[^0-9]/', '', $record->whatsapp_number) : null)
+                        ->url(fn(Counselor $record): ?string => $record->whatsapp_number ? 'https://wa.me/' . preg_replace('/[^0-9]/', '', $record->whatsapp_number) : null)
                         ->openUrlInNewTab()
-                        ->visible(fn (?Counselor $record): bool => $record && ! empty($record->whatsapp_number)),
+                        ->visible(fn(?Counselor $record): bool => $record && ! empty($record->whatsapp_number)),
                     TextColumn::make('instagram_link')
                         ->icon(Phosphor::InstagramLogo)
-                        ->url(fn (Counselor $record): ?string => $record->instagram_link ? 'https://instagram.com/'.ltrim($record->instagram_link, '@') : null)
+                        ->url(fn(Counselor $record): ?string => $record->instagram_link ? 'https://instagram.com/' . ltrim($record->instagram_link, '@') : null)
                         ->openUrlInNewTab()
-                        ->visible(fn (?Counselor $record): bool => $record && ! empty($record->instagram_link)),
+                        ->visible(fn(?Counselor $record): bool => $record && ! empty($record->instagram_link)),
                     TextColumn::make('tiktok_link')
                         ->icon(Phosphor::TiktokLogo)
-                        ->url(fn (Counselor $record): ?string => $record->tiktok_link ? 'https://tiktok.com/@'.ltrim($record->tiktok_link, '@') : null)
+                        ->url(fn(Counselor $record): ?string => $record->tiktok_link ? 'https://tiktok.com/@' . ltrim($record->tiktok_link, '@') : null)
                         ->openUrlInNewTab()
-                        ->visible(fn (?Counselor $record): bool => $record && ! empty($record->tiktok_link)),
+                        ->visible(fn(?Counselor $record): bool => $record && ! empty($record->tiktok_link)),
                     TextColumn::make('facebook_link')
                         ->icon(Phosphor::FacebookLogo)
-                        ->url(fn (Counselor $record): ?string => $record->facebook_link ? 'https://facebook.com/'.ltrim($record->facebook_link, '@') : null)
+                        ->url(fn(Counselor $record): ?string => $record->facebook_link ? 'https://facebook.com/' . ltrim($record->facebook_link, '@') : null)
                         ->openUrlInNewTab()
-                        ->visible(fn (?Counselor $record): bool => $record && ! empty($record->facebook_link)),
+                        ->visible(fn(?Counselor $record): bool => $record && ! empty($record->facebook_link)),
                     TextColumn::make('contact_email')
                         ->icon(Phosphor::Envelope)
-                        ->url(fn (Counselor $record): string => 'mailto:'.$record->contact_email)
+                        ->url(fn(Counselor $record): string => 'mailto:' . $record->contact_email)
                         ->openUrlInNewTab()
-                        ->visible(fn (?Counselor $record): bool => $record && ! empty($record->contact_email)),
+                        ->visible(fn(?Counselor $record): bool => $record && ! empty($record->contact_email)),
                 ])->collapsible(),
             ])
             ->contentGrid([
