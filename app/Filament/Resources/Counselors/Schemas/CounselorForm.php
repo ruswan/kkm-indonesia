@@ -6,6 +6,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
 class CounselorForm
@@ -27,9 +28,18 @@ class CounselorForm
                             ->relationship('province', 'name')
                             ->preload()
                             ->searchable()
-                            ->required(),
+                            ->required()
+                            ->live(),
                         Select::make('regency_id')
-                            ->relationship('regency', 'name')
+                            ->options(function (Get $get) {
+                                $province = $get('province_id');
+
+                                if (! $province) {
+                                    return [];
+                                }
+
+                                return \App\Models\Regency::where('province_id', $province)->pluck('name', 'id');
+                            })
                             ->preload()
                             ->searchable()
                             ->required(),
