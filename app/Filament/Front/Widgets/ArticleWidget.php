@@ -25,6 +25,7 @@ class ArticleWidget extends TableWidget
                         ImageColumn::make('thumbnail')
                             ->label(__('Thumbnail'))
                             ->alignCenter()
+                            ->disk('public')
                             ->square()
                             ->imageSize('100%'),
                     ])->alignment('center'),

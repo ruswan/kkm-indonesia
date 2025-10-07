@@ -47,7 +47,9 @@ class ArticleForm
                             ->label(__('Category'))
                             ->default('Artikel')
                             ->hidden(),
-                        DateTimePicker::make('published_at'),
+                        DateTimePicker::make('published_at')
+                            ->default(now())
+                            ->label(__('Published At')),
                     ])->columns(2)
                     ->columnSpanFull(),
             ]);

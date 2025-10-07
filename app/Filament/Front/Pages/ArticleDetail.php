@@ -48,6 +48,7 @@ class ArticleDetail extends Page implements HasInfolists
             ->record($this->article)
             ->components([
                 ImageEntry::make('thumbnail')
+                    ->disk('public')
                     ->label('Thumbnail')
                     ->hiddenLabel()
                     ->columnSpanFull()

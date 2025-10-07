@@ -17,6 +17,7 @@ class ArticleInfolist
                     ->schema([
                         ImageEntry::make('thumbnail')
                             ->hiddenLabel()
+                            ->disk('public')
                             ->columnSpanFull(),
                         TextEntry::make('title')
                             ->label(__('Title'))

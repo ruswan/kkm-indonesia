@@ -32,6 +32,7 @@ class ArticlesTable
                     ->toggleable(isToggledHiddenByDefault: true),
                 ImageColumn::make('thumbnail')
                     ->label(__('Thumbnail'))
+                    ->disk('public')
                     ->searchable(),
                 TextColumn::make('published_at')
                     ->label(__('Published At'))
