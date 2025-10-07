@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Counselors\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -28,8 +29,9 @@ class CounselorInfolist
                             ->label(__('WhatsApp Number')),
                         TextEntry::make('contact_email')
                             ->label(__('Contact Email')),
-                        TextEntry::make('profile_photo')
+                        ImageEntry::make('profile_photo')
                             ->label(__('Profile Photo'))
+                            ->disk('public')
                             ->placeholder('-'),
                         TextEntry::make('instagram_link')
                             ->label(__('Instagram Link'))

@@ -40,6 +40,7 @@ class CounselorForm
                             ->required(),
                         FileUpload::make('profile_photo')
                             ->image()
+                            ->disk('public')
                             ->nullable(),
                         TextInput::make('instagram_link')
                             ->label('Instagram Account')

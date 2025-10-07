@@ -32,6 +32,7 @@ class FrontCounselorTable extends TableWidget
                     Stack::make([
                         ImageColumn::make('profile_photo')
                             ->label(__('Photo'))
+                            ->disk('public')
                             ->alignCenter()
                             ->square()
                             ->imageSize(100, 100),
