@@ -8,5 +8,7 @@ class About extends Page
 {
     protected string $view = 'filament.front.pages.about';
 
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $navigationLabel = 'Tentang KKMI';
 }

@@ -77,7 +77,7 @@ class FrontPanelProvider extends PanelProvider
 
                             return view('partials.jumbotron', ['title' => $title]);
                         })(),
-                        request()->is('gallery') => view('partials.jumbotron', ['title' => 'Galeri']),
+                        request()->is('gallery') => view('partials.jumbotron', ['title' => 'Galeri Kegiatan']),
                         request()->is('galeri/*') => (function () {
                             $record = request()->route('slug');
                             $record = \App\Models\Gallery::where('slug', $record)->first();

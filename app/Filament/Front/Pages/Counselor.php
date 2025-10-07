@@ -9,6 +9,8 @@ class Counselor extends Page
 {
     protected string $view = 'filament.front.pages.counselor';
 
+    protected static ?int $navigationSort = 3;
+
     protected static ?string $navigationLabel = 'Direktori Konselor';
 
     protected function getHeaderWidgets(): array

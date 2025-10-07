@@ -19,6 +19,10 @@ class Gallery extends Page implements HasTable
 
     protected string $view = 'filament.front.pages.gallery';
 
+    protected static ?int $navigationSort = 5;
+
+    protected static ?string $navigationLabel = 'Galeri Kegiatan';
+
     public function table(Table $table): Table
     {
         return $table
