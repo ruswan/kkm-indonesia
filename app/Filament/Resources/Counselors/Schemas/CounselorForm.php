@@ -44,7 +44,7 @@ class CounselorForm
                             ->searchable()
                             ->required(),
                         TextInput::make('whatsapp_number')
-                            ->required(),
+                            ->numeric(),
                         TextInput::make('contact_email')
                             ->email()
                             ->required(),
