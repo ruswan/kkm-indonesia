@@ -63,9 +63,10 @@ class ArticleDetail extends Page implements HasInfolists
                             ->extraAttributes(['class' => 'text-2xl lg:text-3xl font-bold text-gray-900 leading-tight']),
                         Grid::make()
                             ->schema([
-                                TextEntry::make('author.name')
+                                TextEntry::make('author_name')
                                     ->label('Author')
-                                    ->extraAttributes(['class' => 'text-sm text-gray-600']),
+                                    ->extraAttributes(['class' => 'text-sm text-gray-600'])
+                                    ->getStateUsing(fn ($record) => $record->author_name ?? 'Admin'),
                                 TextEntry::make('created_at')
                                     ->label('Published on')
                                     ->dateTime('d M Y')

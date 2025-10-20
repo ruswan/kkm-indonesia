@@ -22,16 +22,13 @@ class ArticleInfolist
                         TextEntry::make('title')
                             ->label(__('Title'))
                             ->columnSpanFull(),
-                        TextEntry::make('slug')
-                            ->label(__('Slug'))
-                            ->badge()
-                            ->columnSpanFull(),
                         TextEntry::make('content')
                             ->html()
                             ->columnSpanFull(),
                         TextEntry::make('category')
-                            ->label(__('Category')),
-                        TextEntry::make('author.name')
+                            ->label(__('Category'))
+                            ->hidden(),
+                        TextEntry::make('author_name')
                             ->label(__('Author')),
                         TextEntry::make('published_at')
                             ->dateTime()

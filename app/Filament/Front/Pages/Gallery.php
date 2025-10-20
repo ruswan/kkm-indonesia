@@ -46,12 +46,13 @@ class Gallery extends Page implements HasTable
                             ->url(fn ($record) => '/galeri/'.$record->slug),
                         TextColumn::make('title')
                             ->searchable()
-                            ->extraAttributes(['class' => 'text-lg font-bold mt-4']),
+                            ->extraAttributes(['class' => 'text-lg font-bold mt-4'])
+                            ->url(fn ($record) => '/galeri/'.$record->slug),
                     ]),
                 ]),
             ])
             ->contentGrid([
-                'default' => 2,
+                'default' => 1,
                 'md' => 3,
                 'lg' => 3,
                 'xl' => 3,

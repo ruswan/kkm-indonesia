@@ -55,6 +55,7 @@ class Article extends Model
         'author_id',
         'thumbnail',
         'published_at',
+        'author_name',
     ];
 
     /**

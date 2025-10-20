@@ -47,6 +47,9 @@ class ArticleForm
                             ->label(__('Category'))
                             ->default('Artikel')
                             ->hidden(),
+                        TextInput::make('author_name')
+                            ->label(__('Author Name'))
+                            ->required(),
                         DateTimePicker::make('published_at')
                             ->default(now())
                             ->label(__('Published At')),

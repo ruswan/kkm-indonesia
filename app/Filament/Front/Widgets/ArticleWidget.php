@@ -45,10 +45,11 @@ class ArticleWidget extends TableWidget
                             ->wrap()
                             ->extraAttributes(['class' => 'text-gray-500 text-sm']),
 
-                        TextColumn::make('author.name')
+                        TextColumn::make('author_name')
                             ->label(__('Author'))
                             ->icon('heroicon-o-user')
-                            ->color('gray'),
+                            ->color('gray')
+                            ->getStateUsing(fn ($record) => $record->author_name ?? 'Admin'),
 
                         TextColumn::make('published_at')
                             ->label(__('Published'))

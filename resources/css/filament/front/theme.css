@@ -123,11 +123,12 @@
     color: #0f766e; /* teal-700 */
     line-height: 1.25;
     margin-bottom: 1.5rem;
+    padding-top: 30px; /* Padding top untuk mobile */
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
     .hero-title {
-        font-size: 3rem;
+        padding-top: 0; /* Hapus padding top pada tablet dan desktop */
     }
 }
 
